@@ -1,6 +1,6 @@
 {
-  "name": "Gram Grabberz",
-  "short_name": "GramGrabberz",
+  "name": "Vidzilla",
+  "short_name": "Vidzilla",
   "description": "Fast, free, and no login required. Just paste the URL and download.",
   "start_url": "/",
   "display": "standalone",
@@ -27,6 +27,6 @@
   "author": "riad-azz",
   "copyright": "© 2025 riad-azz. All rights reserved.",
   "rating": "General",
-  "apple-mobile-web-app-title": "Gram Grabberz",
+  "apple-mobile-web-app-title": "Vidzilla",
   "apple-mobile-web-app-status-bar-style": "black-translucent"
 }
