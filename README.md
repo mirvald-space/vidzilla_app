@@ -1,67 +1,50 @@
-# Gram Grabberz (Instagram Video Downloader)
+# Video Downloader
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project is an educational demonstration of building a web application to
-download Instagram videos using Next.js. The primary goal is to explore modern
-web development techniques, including server-side rendering/components, API
-interaction (potentially via Next.js API routes), state management, form
-handling, and building a clean UI with Shadcn/ui.
+A powerful web application that allows you to download videos from various social media platforms. Simply paste a link, and get your video instantly!
 
-**Disclaimer:** This tool is intended for educational purposes only. Downloading
-videos from Instagram may violate their Terms of Service. Please respect
-copyright laws and the platform's policies. Use this tool responsibly and only
-for content you have the right to download.
+**Disclaimer:** This tool is intended for personal use only. Please respect copyright laws and platform policies. Use this tool responsibly and only for content you have the right to download.
 
-Website Preview: [gram-grabberz.vercel.app](https://gram-grabberz.vercel.app)
+Website Preview: [video-downloader.vercel.app](https://video-downloader.vercel.app)
 
 ![website preview](https://github.com/user-attachments/assets/74e5db68-b5b5-425b-8734-81bbaedeb3c4)
 
+## 🎬 Supported Platforms
+
+Video Downloader now supports over 40 platforms, including:
+
+* **Instagram** - Reels and posts
+* **TikTok** - All videos
+* **YouTube** - Videos and Shorts
+* **Facebook** - Videos and Reels
+* **Twitter/X** - Videos and GIFs
+* **Pinterest** - Video Pins
+* **Reddit** - Videos
+* **Snapchat** - Videos
+* **LinkedIn** - Videos
+* **Vimeo** - Videos
+* **Telegram** - Public channel videos
+* **Bilibili** - Videos
+* **Tumblr** - Videos
+* **And many more!** - Check the help section for the complete list
+
 ## ✨ Features
 
-- **Download Instagram Videos:** Input an Instagram video URL to fetch and
-  download the video file. (Note: Functionality depends on the backend
-  implementation, which isn't detailed here but is a core part of the learning
-  experience).
-- **Modern Frontend Stack:** Built with the latest Next.js (App Router).
-- **Clean UI:** User interface crafted using [Shadcn/ui](https://ui.shadcn.com/)
-  components and styled with Tailwind CSS v4.
-- **Responsive Layout:** Ensures a consistent and user-friendly experience
-  across different screen sizes.
-- **Type-Safe:** Written entirely in TypeScript.
-- **Form Handling & Validation:** Robust input handling using React Hook Form
-  and Zod for schema validation.
-- **Client-Side Caching:** Efficient data fetching and state management with
-  TanStack Query (React Query).
-- **Theming:** Supports light and dark mode using `next-themes`.
-- **Internationalization (i18n):** Setup for multi-language support using
-  `next-intl`.
-- **User Feedback:** Uses `sonner` for toast notifications.
-- **Optimized Development:** Utilizes Next.js Turbopack (`--turbopack`) for
-  faster development builds.
+* **Easy to Use** - Just paste a link, get your video!
+* **Fast Downloads** - Videos delivered in seconds
+* **Multiple Formats** - Receive videos in playable and downloadable formats
+* **Responsive Design** - Works perfectly on desktop and mobile devices
+* **Modern UI** - Clean and intuitive user interface
+* **No Watermarks** - Download original videos without platform watermarks
+* **Free to Use** - With optional donations to support our servers
 
-## 📚 Educational Goals
+## 📱 How to Use
 
-This project serves as a learning resource for understanding:
-
-- **Next.js Fundamentals:** App Router, Server Components, Client Components,
-  API Routes (if implemented for backend logic), SSR/SSG concepts.
-- **UI Development:** Building composable and accessible UI components with
-  Shadcn/ui, Radix UI primitives, and Tailwind CSS utility classes.
-- **State Management:** Managing server state, caching, and background updates
-  with TanStack Query.
-- **Form Management:** Implementing complex forms with validation using React
-  Hook Form and Zod.
-- **API Integration:** Fetching data from external sources or custom backend
-  endpoints. (The specifics of interacting with Instagram are a key learning
-  challenge).
-- **TypeScript:** Leveraging static typing in a full-stack React framework.
-- **Modern Styling:** Using Tailwind CSS v4 features and utilities like `clsx`
-  and `tailwind-merge`.
-- **Internationalization:** Setting up and managing translations with
-  `next-intl`.
-- **Project Structure & Tooling:** Organizing a Next.js application, using
-  ESLint and Prettier for code quality.
+1. **Visit the Website**: Go to [video-downloader.vercel.app](https://video-downloader.vercel.app)
+2. **Paste a Link**: Copy and paste any supported video URL
+3. **Get Your Video**: Download or watch the video directly in your browser
+4. **Support Us**: Consider donating if you find the service useful
 
 ## 🛠️ Tech Stack
 
@@ -87,7 +70,7 @@ Follow these steps to set up and run the project locally:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/riad-azz/instagram-video-downloader.git
+   git clone https://github.com/meghost77/instagram-video-downloader.git
    ```
 
    ```bash
@@ -130,19 +113,14 @@ Follow these steps to set up and run the project locally:
    yarn start # or npm run start
    ```
 
-## 💡 Usage
+## 📊 Implementation Details
 
-1. Open the application in your web browser.
-2. Find the Instagram video you wish to download and copy its URL.
-3. Paste the URL into the input field on the application's main page.
-4. Click the "Download" button.
-5. If successful, a download link or button for the video file should appear.
+* **Instagram**: Direct download using custom API
+* **Other platforms**: Using various APIs for different platforms
+* **Frontend**: Next.js with React 19 and modern component libraries
+* **Backend**: Serverless functions for handling video downloads
 
 ## 🤝 Contributing
-
-As this is primarily an educational project, contributions might focus on
-improving code clarity, adding explanations, fixing bugs, or exploring
-alternative approaches to the problems tackled.
 
 If you'd like to contribute:
 
@@ -160,5 +138,4 @@ details.
 
 ---
 
-Happy Coding! Remember to use this project responsibly and focus on the learning
-aspects.
+Made with ❤️
