@@ -19,7 +19,7 @@ export function LogoText({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     >
-      GramGrabberz
+      Vidzilla
     </div>
   );
 }
