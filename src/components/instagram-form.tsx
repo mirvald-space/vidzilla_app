@@ -49,17 +49,21 @@ const useFormSchema = () => {
   });
 };
 
-function triggerDownload(videoUrl: string) {
+function triggerDownload(mediaUrl: string, mediaType: "video" | "image") {
   // Ensure we are in a browser environment
   if (typeof window === "undefined") return;
 
   const randomTime = new Date().getTime().toString().slice(-8);
-  const filename = `gram-grabberz-${randomTime}.mp-4`;
+  
+  // Используем разные расширения в зависимости от типа медиа
+  const extension = mediaType === "video" ? "mp4" : "jpg";
+  const filename = `gram-grabberz-${randomTime}.${extension}`;
 
   // Construct the URL to your proxy API route
   const proxyUrl = new URL("/api/download-proxy", window.location.origin); // Use relative path + origin
-  proxyUrl.searchParams.append("url", videoUrl);
+  proxyUrl.searchParams.append("url", mediaUrl);
   proxyUrl.searchParams.append("filename", filename);
+  proxyUrl.searchParams.append("mediaType", mediaType);
 
   console.log("Using proxy URL:", proxyUrl.toString()); // For debugging
 
@@ -84,7 +88,8 @@ function triggerDownload(videoUrl: string) {
 }
 
 type CachedUrl = {
-  videoUrl?: string;
+  mediaUrl?: string;
+  mediaType?: "video" | "image";
   expiresAt: number;
   invalid?: {
     messageKey: string;
@@ -125,11 +130,13 @@ export function InstagramForm(props: { className?: string }) {
 
   function setCachedUrl(
     shortcode: string,
-    videoUrl?: string,
+    mediaUrl?: string,
+    mediaType?: "video" | "image",
     invalid?: CachedUrl["invalid"]
   ) {
     cachedUrls.current?.set(shortcode, {
-      videoUrl,
+      mediaUrl,
+      mediaType,
       expiresAt: Date.now() + CACHE_TIME,
       invalid,
     });
@@ -168,8 +175,8 @@ export function InstagramForm(props: { className?: string }) {
       return;
     }
 
-    if (cachedUrl?.videoUrl) {
-      triggerDownload(cachedUrl.videoUrl);
+    if (cachedUrl?.mediaUrl && cachedUrl?.mediaType) {
+      triggerDownload(cachedUrl.mediaUrl, cachedUrl.mediaType);
       return;
     }
 
@@ -177,17 +184,19 @@ export function InstagramForm(props: { className?: string }) {
       const { data, status } = await getInstagramPost({ shortcode });
 
       if (status === HTTP_CODE_ENUM.OK) {
-        const downloadUrl = data.data.xdt_shortcode_media.video_url;
-        if (downloadUrl) {
-          triggerDownload(downloadUrl);
-          setCachedUrl(shortcode, downloadUrl);
+        const mediaUrl = data.mediaUrl;
+        const mediaType = data.mediaType as "video" | "image";
+        
+        if (mediaUrl) {
+          triggerDownload(mediaUrl, mediaType);
+          setCachedUrl(shortcode, mediaUrl, mediaType);
           toast.success(t("toasts.success"), {
             id: "toast-success",
             position: "top-center",
             duration: 1500,
           });
         } else {
-          throw new Error("Video URL not found");
+          throw new Error("Media URL not found");
         }
       } else if (
         status === HTTP_CODE_ENUM.NOT_FOUND ||
@@ -201,12 +210,12 @@ export function InstagramForm(props: { className?: string }) {
           status === HTTP_CODE_ENUM.BAD_REQUEST ||
           status === HTTP_CODE_ENUM.NOT_FOUND
         ) {
-          setCachedUrl(shortcode, undefined, {
+          setCachedUrl(shortcode, undefined, undefined, {
             messageKey: errorMessageKey,
           });
         }
       } else {
-        throw new Error("Failed to fetch video");
+        throw new Error("Failed to fetch media");
       }
     } catch (error) {
       console.error(error);

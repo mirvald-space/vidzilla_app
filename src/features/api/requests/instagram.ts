@@ -11,7 +11,11 @@ export type GetInstagramPostRequest = {
   shortcode: string;
 };
 
-export type GetInstagramPostResponse = IG_GraphQLResponseDto;
+export type GetInstagramPostResponse = {
+  data: IG_GraphQLResponseDto;
+  mediaType: "video" | "image";
+  mediaUrl: string;
+};
 
 export function useGetInstagramPost() {
   const fetch = useFetch();

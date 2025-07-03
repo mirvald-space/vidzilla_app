@@ -36,14 +36,19 @@ export async function GET(_: NextRequest, context: RouteContext) {
         );
       }
 
-      if (!data.xdt_shortcode_media.is_video) {
-        return NextResponse.json(
-          { error: "notVideo", message: "post is not a video" },
-          { status: 400 }
-        );
-      }
-
-      return NextResponse.json({ data }, { status: 200 });
+      // Определяем тип медиа (видео или изображение)
+      const mediaType = data.xdt_shortcode_media.is_video ? "video" : "image";
+      
+      // Для видео используем video_url, для изображений - display_url
+      const mediaUrl = data.xdt_shortcode_media.is_video 
+        ? data.xdt_shortcode_media.video_url 
+        : data.xdt_shortcode_media.display_url;
+      
+      return NextResponse.json({ 
+        data,
+        mediaType,
+        mediaUrl
+      }, { status: 200 });
     }
 
     if (status === 404) {
